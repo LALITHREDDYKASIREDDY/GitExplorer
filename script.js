@@ -35,7 +35,7 @@ btnsubmit.addEventListener("click", function () {
 input.addEventListener(
   "keydown",
   function (e) {
-    if (e.key == "Enter") {
+    if (e.key ==="Enter") {
       if (input.value !== "") {
         getUserData(url + input.value);
       }
@@ -59,16 +59,17 @@ btnmode.addEventListener("click", function () {
 // Functions
 
 //API CALL
-function getUserData(gitUrl) {
-  fetch(gitUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
+async function getUserData(gitUrl) {
+  try{
+ const response =await  fetch(gitUrl)
+const data=await  response.json()
+   
       updateProfile(data);
-    })
-    .catch((error) => {
-      throw error;
-    });
+      console.log(data.message)
+  }
+  catch(error){
+    console.log(error)
+  }
 }
 
 
